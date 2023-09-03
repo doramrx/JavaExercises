@@ -4,8 +4,8 @@ public class Invoice {
     private BillingContract billingContract;
     private double price;
     private Duration rentDuration;
-    private double basicPayment;
-    private double tax;
+    protected double basicPayment;
+    protected double tax;
 
     public Invoice(BillingContract billingContract, double price, Duration rentDuration) {
         this.billingContract = billingContract;

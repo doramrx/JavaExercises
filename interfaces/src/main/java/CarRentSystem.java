@@ -28,6 +28,6 @@ public class CarRentSystem {
             );
         }
 
-        carRent.printInvoice();
+        carRent.generateInvoice();
     }
 }

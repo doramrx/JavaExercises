@@ -21,7 +21,7 @@ public class CarRent{
         return Duration.between(this.pickupDate, this.returnDate);
     }
 
-    public void printInvoice(){
+    public void generateInvoice(){
         invoice.calculatePayment();
         invoice.printInvoice();
     }
