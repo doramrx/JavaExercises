@@ -1,46 +1,28 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class CarRent implements RentCalculationContract{
+public class CarRent{
     private String carModel;
     private LocalDateTime pickupDate;
     private LocalDateTime returnDate;
-    private Double price;
+    private Invoice invoice;
 
-
-    public CarRent(String carModel, LocalDateTime pickupDate, LocalDateTime returnDate, Double price) {
+    public CarRent(String carModel, LocalDateTime pickupDate, LocalDateTime returnDate) {
         this.carModel = carModel;
         this.pickupDate = pickupDate;
         this.returnDate = returnDate;
-        this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "CarRent {" +
-                "\ncarModel = '" + carModel + '\'' +
-                "\npickupDate = " + pickupDate +
-                "\nreturnDate = " + returnDate +
-                "\nprice = " + price +
-                '}';
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
-    @Override
-    public void calculateCarRentTotal(Duration duration, Double price) {}
-
-    @Override
-    public Double calculateTax(Duration duration, Double price, int roundedTime) {
-        return null;
+    public Duration calculateRentDuration(){
+        return Duration.between(this.pickupDate, this.returnDate);
     }
 
-    public void printInvoice(Double price, Double tax, int roundedTime){
-        double basicPayment = price * roundedTime;
-        double totalPayment = basicPayment + tax;
-
-        System.out.println("\nINVOICE");
-        System.out.println("Basic payment: " + String.format("%.2f", basicPayment));
-        System.out.println("Tax: " + String.format("%.2f", tax));
-        System.out.println("Total payment: " + String.format("%.2f", totalPayment));
+    public void printInvoice(){
+        invoice.calculatePayment();
+        invoice.printInvoice();
     }
-
 }
