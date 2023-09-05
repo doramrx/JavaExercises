@@ -1,3 +1,5 @@
+package CarRentalSystem;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -55,7 +57,7 @@ class CarRentData {
 
     @Override
     public String toString() {
-        return "CarRentData{" +
+        return "CarRental.CarRentData{" +
                 "carModel='" + carModel + '\'' +
                 ", pickupDate=" + pickupDate +
                 ", returnDate=" + returnDate +

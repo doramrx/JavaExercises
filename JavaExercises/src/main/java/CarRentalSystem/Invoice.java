@@ -1,3 +1,5 @@
+package CarRentalSystem;
+
 import java.time.Duration;
 
 public class Invoice {
@@ -29,7 +31,7 @@ public class Invoice {
 
         System.out.println("\nINVOICE");
         System.out.println("Basic payment: " + String.format("%.2f", this.basicPayment));
-        System.out.println("Tax: " + String.format("%.2f", this.tax));
+        System.out.println("CarRental.Tax: " + String.format("%.2f", this.tax));
         System.out.println("Total payment: " + String.format("%.2f", totalPayment));
     }
 }

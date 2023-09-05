@@ -1,3 +1,5 @@
+package CarRentalSystem;
+
 import java.time.Duration;
 import java.util.Locale;
 

@@ -1,3 +1,5 @@
+package CarRentalSystem;
+
 import java.time.Duration;
 
 public class HourlyBilling implements BillingContract {
