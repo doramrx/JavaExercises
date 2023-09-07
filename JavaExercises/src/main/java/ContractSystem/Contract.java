@@ -21,6 +21,8 @@ public class Contract {
         installments.add(installment);
     }
 
+    public Installment getInstallment(int index) { return installments.get(index); }
+
     public void printInstallments(){
         for(Installment installment : installments){
             System.out.println(installment.getDueDate().format(formatter) + " - " +
