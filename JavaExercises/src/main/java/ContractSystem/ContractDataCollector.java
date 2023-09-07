@@ -15,26 +15,72 @@ public class ContractDataCollector {
 
         System.out.print("Number: ");
         this.contractData.number = this.sc.nextLine();
+        this.verifyContractNumber(this.contractData.number);
 
-        try {
+        boolean validDate = false;
+        while (!validDate) {
             System.out.print("Date (dd/MM/yyyy): ");
             String dateTimeString = this.sc.nextLine();
-            this.contractData.date = LocalDate.parse(dateTimeString, formatter);
-        } catch (DateTimeParseException e) {
-            System.out.println("Date entered is not in the proper format.");
-            e.printStackTrace();
+
+            try {
+                this.contractData.date = LocalDate.parse(dateTimeString, formatter);
+                validDate = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. Please enter a valid date in dd/MM/yyyy format.");
+            }
         }
 
         System.out.print("Contract value: ");
         this.contractData.value = Double.parseDouble(this.sc.nextLine());
+        this.verifyContractValue(this.contractData.value);
 
         System.out.print("Enter the number of installments: ");
         this.contractData.installments = Integer.parseInt(sc.nextLine());
+        this.verifyContractInstallments(this.contractData.installments);
 
     }
 
     public ContractData getContractData(){
         return this.contractData;
+    }
+
+    public void verifyContractNumber(String contractNumber){
+        if (contractNumber.trim().isEmpty()) {
+            System.out.println("Contract number must be informed.");
+
+            do {
+                System.out.print("Enter a valid contract number: ");
+                contractNumber = this.sc.nextLine();
+            } while (contractNumber.trim().isEmpty());
+
+        }
+        this.contractData.number = contractNumber;
+    }
+
+    public void verifyContractValue(double contractValue){
+        if (contractValue <= 0) {
+            System.out.println("Contract value must be greater than 0.");
+
+            do {
+                System.out.print("Enter a valid contract value: ");
+                contractValue = Double.parseDouble(this.sc.nextLine());
+            } while (contractValue <= 0);
+
+        }
+        this.contractData.value = contractValue;
+    }
+
+    public void verifyContractInstallments(int installmentsValue){
+        if (installmentsValue <= 0) {
+            System.out.println("Installments number must be greater than 0.");
+
+            do {
+                System.out.print("Enter a valid installments number: ");
+                installmentsValue = Integer.parseInt(this.sc.nextLine());
+            } while (installmentsValue <= 0);
+
+        }
+        this.contractData.installments = installmentsValue;
     }
 
 }

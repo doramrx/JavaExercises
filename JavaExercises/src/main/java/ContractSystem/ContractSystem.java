@@ -14,7 +14,7 @@ public class ContractSystem {
         ContractService contractService = new ContractService(new PaypalService());
         contractService.processContract(contract, contractData.installments);
 
-        System.out.println("Installments: ");
+        System.out.println("\nInstallments: ");
         contract.printInstallments();
     }
 }
