@@ -3,7 +3,6 @@ package ContractSystem;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Contract {
     private String number;
@@ -22,10 +21,6 @@ public class Contract {
         installments.add(installment);
     }
 
-    public Installment getInstallment(int index){
-        return installments.get(index);
-    }
-
     public void printInstallments(){
         for(Installment installment : installments){
             System.out.println(installment.getDueDate().format(formatter) + " - " +
@@ -33,28 +28,11 @@ public class Contract {
         }
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public LocalDate getDate() {
         return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
 
     public double getValue() {
         return value;
     }
-
-    public void setValue(double value) {
-        this.value = value;
-    }
-
 }
