@@ -28,6 +28,9 @@ public class ContractDataCollector {
         System.out.print("Contract value: ");
         this.contractData.value = Double.parseDouble(this.sc.nextLine());
 
+        System.out.print("Enter the number of installments: ");
+        this.contractData.installments = Integer.parseInt(sc.nextLine());
+
     }
 
     public ContractData getContractData(){
@@ -40,4 +43,5 @@ class ContractData {
     public String number;
     public LocalDate date;
     public double value;
+    public int installments;
 }
