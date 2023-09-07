@@ -13,7 +13,7 @@ public class ContractSystem {
 
         ContractService contractService = new ContractService(new PaypalService());
         contractService.processContract(contract, contractData.installments);
-        
+
         contract.printInstallments();
     }
 }
