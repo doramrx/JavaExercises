@@ -24,6 +24,7 @@ public class Contract {
     public Installment getInstallment(int index) { return installments.get(index); }
 
     public void printInstallments(){
+        System.out.println("\nInstallments: ");
         for(Installment installment : installments){
             System.out.println(installment.getDueDate().format(formatter) + " - " +
                                String.format("%.2f", installment.getAmount()));
