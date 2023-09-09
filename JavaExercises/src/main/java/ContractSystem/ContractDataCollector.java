@@ -14,29 +14,16 @@ public class ContractDataCollector {
         System.out.println("Enter Contract data: ");
 
         System.out.print("Number: ");
-        this.contractData.number = this.sc.nextLine();
-        this.verifyContractNumber(this.contractData.number);
+        this.collectContractNumber();
 
-        boolean validDate = false;
-        while (!validDate) {
-            System.out.print("Date (dd/MM/yyyy): ");
-            String dateTimeString = this.sc.nextLine();
-
-            try {
-                this.contractData.date = LocalDate.parse(dateTimeString, formatter);
-                validDate = true;
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format. Please enter a valid date in dd/MM/yyyy format.");
-            }
-        }
+        System.out.print("Date (dd/MM/yyyy): ");
+        this.collectContractDate();
 
         System.out.print("Contract value: ");
-        this.contractData.value = Double.parseDouble(this.sc.nextLine());
-        this.verifyContractValue(this.contractData.value);
+        this.collectContractValue();
 
         System.out.print("Enter the number of installments: ");
-        this.contractData.installments = Integer.parseInt(sc.nextLine());
-        this.verifyContractInstallments(this.contractData.installments);
+        this.collectContractInstallments();
 
     }
 
@@ -44,7 +31,8 @@ public class ContractDataCollector {
         return this.contractData;
     }
 
-    public void verifyContractNumber(String contractNumber){
+    private void collectContractNumber(){
+        String contractNumber = this.sc.nextLine();
         if (contractNumber.trim().isEmpty()) {
             System.out.println("Contract number must be informed.");
 
@@ -57,7 +45,21 @@ public class ContractDataCollector {
         this.contractData.number = contractNumber;
     }
 
-    public void verifyContractValue(double contractValue){
+    private void collectContractDate(){
+        boolean validDate = false;
+        while (!validDate){
+            String dateTimeString = this.sc.nextLine();
+            try {
+                this.contractData.date = LocalDate.parse(dateTimeString, formatter);
+                validDate = true;
+            } catch (DateTimeParseException e) {
+                System.out.print("Invalid date format. Please enter a valid date in dd/MM/yyyy format: ");
+            }
+        }
+    }
+
+    private void collectContractValue(){
+        double contractValue = Double.parseDouble(this.sc.nextLine());
         if (contractValue <= 0) {
             System.out.println("Contract value must be greater than 0.");
 
@@ -70,7 +72,8 @@ public class ContractDataCollector {
         this.contractData.value = contractValue;
     }
 
-    public void verifyContractInstallments(int installmentsValue){
+    private void collectContractInstallments(){
+        int installmentsValue = Integer.parseInt(this.sc.nextLine());
         if (installmentsValue <= 0) {
             System.out.println("Installments number must be greater than 0.");
 
@@ -82,7 +85,6 @@ public class ContractDataCollector {
         }
         this.contractData.installments = installmentsValue;
     }
-
 }
 
 class ContractData {

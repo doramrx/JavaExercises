@@ -2,7 +2,6 @@ package ContractSystem;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -11,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ContractServiceTest {
 
-    @InjectMocks
     OnlinePaymentService onlinePaymentService = new PaypalService();
 
     @Test

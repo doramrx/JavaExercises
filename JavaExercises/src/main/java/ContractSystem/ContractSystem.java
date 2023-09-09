@@ -2,8 +2,12 @@ package ContractSystem;
 import java.util.Locale;
 
 public class ContractSystem {
-    public void init(){
+    public void setupSystem() {
         Locale.setDefault(Locale.US);
+    }
+
+    public void init(){
+        this.setupSystem();
 
         ContractDataCollector contractDataCollector = new ContractDataCollector();
         contractDataCollector.collectContractData();
