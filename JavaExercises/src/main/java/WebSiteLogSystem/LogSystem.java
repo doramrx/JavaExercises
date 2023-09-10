@@ -5,14 +5,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class LogSystem {
+    Set<LogEntry> users = new HashSet<>();
+
     void init() {
+
        DataCollector dataCollector = new DataCollector();
        dataCollector.collectData();
 
-       DateTimeFormatter formatter = DateTimeFormatter.ISO_ZONED_DATE_TIME;
-       Set<LogEntry> users = new HashSet<>();
+       System.out.println("Total users: " + countUsers(dataCollector.getFilePath()));
 
-        try (BufferedReader br = new BufferedReader(new FileReader(dataCollector.getFilePath()))) {
+    }
+
+    public Integer countUsers(String filePath){
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_ZONED_DATE_TIME;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
             String line = br.readLine();
             while (line != null) {
@@ -22,15 +28,14 @@ public class LogSystem {
                 String stringDate = fields[1];
                 LocalDateTime date = LocalDateTime.parse(stringDate, formatter);
 
-                users.add(new LogEntry(username, date));
+                this.users.add(new LogEntry(username, date));
 
                 line = br.readLine();
             }
 
-            System.out.println("Total users: " + users.size());
-
-       } catch (IOException e) {
-           System.out.println("Error: " + e.getMessage());
-       }
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return this.users.size();
     }
 }
