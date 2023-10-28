@@ -1,4 +1,4 @@
-package ProductStreamExcercise;
+package ProductStreamExercise;
 
 public class Product {
     private String name;
@@ -13,20 +13,7 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getPrice() {
         return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return this.getName() + ", " + String.format("%.2f%n", this.getPrice());
     }
 }

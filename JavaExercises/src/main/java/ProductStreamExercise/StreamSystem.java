@@ -1,4 +1,4 @@
-package ProductStreamExcercise;
+package ProductStreamExercise;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -8,28 +8,43 @@ import java.util.*;
 
 public class StreamSystem {
 
-    private List<Product> products = new ArrayList<>();
-    private String filePath = "C:\\Users\\Acer\\Desktop\\ProgramaçãoJava\\Workspace\\JavaExercises\\src\\main\\java\\StreamExcercise\\in.csv";
+    private final List<Product> products = new ArrayList<>();
+
+    public void setupSystem() {
+        Locale.setDefault(Locale.US);
+    }
 
     public void init() throws FileNotFoundException {
+        this.setupSystem();
+
+        String filePath = "C:\\Users\\Acer\\Desktop\\ProgramaçãoJava\\Workspace\\JavaExercises\\src\\main\\java\\ProductStreamExercise\\in.csv";
         this.addProductsToList(filePath);
 
         double average = this.getAverage(this.products);
 
-        Collections.sort(products, (p1, p2) -> (p2.getName().compareTo(p1.getName())));
-        List<Product> filteredProducts = products.stream()
-                .filter(p -> p.getPrice() < average)
-                .toList();
+        List<String> filteredProductNames = this.filterNames(this.products, average);
 
         System.out.printf("Average price: " + String.format("%.2f%n", average));
-        filteredProducts.forEach(e -> System.out.println(e.getName()));
+        filteredProductNames.forEach(System.out::println);
     }
 
-    private double getAverage(List<Product> products){
+    protected List<String> filterNames(List<Product> products, double average){
+        return products.stream()
+                .filter(p -> p.getPrice() < average)
+                .map(Product::getName)
+                .sorted(sortName().reversed())
+                .toList();
+    }
+
+    protected double getAverage(List<Product> products){
         return products.stream()
                 .mapToDouble(Product::getPrice)
                 .average()
                 .orElse(0.0);
+    }
+
+    private Comparator<String> sortName(){
+        return (p1, p2) -> p1.toUpperCase().compareTo(p2.toUpperCase());
     }
 
     private void addProductsToList(String filePath){

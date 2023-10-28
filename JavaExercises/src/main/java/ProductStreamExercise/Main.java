@@ -1,4 +1,4 @@
-package ProductStreamExcercise;
+package ProductStreamExercise;
 
 
 import java.io.FileNotFoundException;
