@@ -5,7 +5,7 @@
 * Java Language
 * Unit Tests (JUnit and Mockito)
 
-### Subjects studied until now [JAVA LANG]
+### Subjects studied
 * OOP, Classes, Enums
 * Packages
 * Conditionals, Functions, Loops
