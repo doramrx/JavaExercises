@@ -3,7 +3,7 @@
 ### Technologies studied until now
 * Git and Github
 * Java Language
-* Unit Tests (JUnit and Mockito)
+* JUnit and Mockito
 
 ### Subjects studied
 * OOP, Classes, Enums
@@ -11,6 +11,7 @@
 * Conditionals, Functions, Loops
 * Exceptions
 * Files and APIs
+* Unit Tests
 * Interfaces
 * Collections
 * Generics, Set, Map
