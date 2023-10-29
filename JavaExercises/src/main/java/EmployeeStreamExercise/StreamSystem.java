@@ -5,6 +5,8 @@ import EmployeeStreamExercise.DataCollector;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -21,12 +23,11 @@ public class StreamSystem {
     public void init(){
         this.setupSystem();
 
-        String filePath = "C:\\Users\\Acer\\Desktop\\ProgramaçãoJava\\Workspace\\JavaExercises\\src\\main\\java\\EmployeeStreamExercise\\in.csv";
+        Path filePath = Paths.get("JavaExercises","src","main","java","EmployeeStreamExercise").resolve("in.csv");
         this.addEmployeesToList(filePath);
 
         DataCollector dataCollector = new DataCollector();
-        dataCollector.collectData();
-        double salary = dataCollector.getSalary();
+        double salary = dataCollector.collectData();
 
         List<String> emails = this.filterEmails(this.employees, salary);
 
@@ -55,11 +56,11 @@ public class StreamSystem {
     }
 
     private Comparator<String> sortEmail(){
-        return (e1, e2) -> e1.toUpperCase().compareTo(e2.toUpperCase());
+        return Comparator.comparing(String::toUpperCase);
     }
 
-    private void addEmployeesToList(String filePath){
-        try(BufferedReader br = new BufferedReader(new FileReader(filePath))){
+    private void addEmployeesToList(Path filePath){
+        try(BufferedReader br = new BufferedReader(new FileReader(filePath.toFile()))){
             String line = br.readLine();
             while (line != null) {
                 String[] fields = line.split(",");
