@@ -1,41 +1,27 @@
 package WebSiteLogSystem;
-import java.io.*;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class LogSystem {
-    Set<LogEntry> users = new HashSet<>();
+    private Set<LogEntry> users = new HashSet<>();
+    private DataCollector dataCollector;
 
-    void init() {
-
-       DataCollector dataCollector = new DataCollector();
-       dataCollector.collectData();
-
-       System.out.println("Total users: " + countUsers(dataCollector.getFilePath()));
-
+    public LogSystem() {
+        this.dataCollector = new DataCollector();
     }
 
-    public Integer countUsers(String filePath){
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_ZONED_DATE_TIME;
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+    void init() {
+       this.users = dataCollector.collectData();
 
-            String line = br.readLine();
-            while (line != null) {
+       System.out.println("Total users: " + countUsers());
+    }
 
-                String[] fields =  line.split(" ");
-                String username = fields[0];
-                String stringDate = fields[1];
-                LocalDateTime date = LocalDateTime.parse(stringDate, formatter);
-
-                this.users.add(new LogEntry(username, date));
-
-                line = br.readLine();
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+    public Integer countUsers(){
         return this.users.size();
+    }
+
+    protected void setDataCollector(DataCollector dataCollector) {
+        this.dataCollector = dataCollector;
     }
 }

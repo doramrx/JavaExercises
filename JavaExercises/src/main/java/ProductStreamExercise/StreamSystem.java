@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class StreamSystem {
@@ -17,7 +19,7 @@ public class StreamSystem {
     public void init() throws FileNotFoundException {
         this.setupSystem();
 
-        String filePath = "C:\\Users\\Acer\\Desktop\\ProgramaçãoJava\\Workspace\\JavaExercises\\src\\main\\java\\ProductStreamExercise\\in.csv";
+        Path filePath = Paths.get("JavaExercises", "src", "main", "java", "ProductStreamExercise").resolve("in.csv");
         this.addProductsToList(filePath);
 
         double average = this.getAverage(this.products);
@@ -44,11 +46,11 @@ public class StreamSystem {
     }
 
     private Comparator<String> sortName(){
-        return (p1, p2) -> p1.toUpperCase().compareTo(p2.toUpperCase());
+        return Comparator.comparing(String::toUpperCase);
     }
 
-    private void addProductsToList(String filePath){
-        try(BufferedReader br = new BufferedReader(new FileReader(filePath))){
+    private void addProductsToList(Path filePath){
+        try(BufferedReader br = new BufferedReader(new FileReader(filePath.toFile()))){
             String line = br.readLine();
             while (line != null) {
                 String[] fields = line.split(",");

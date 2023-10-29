@@ -26,14 +26,7 @@ public class DataCollector {
     private void readStudents(int quantity){
         for (int i = 0; i < quantity; i++) {
             int id = Integer.parseInt(this.sc.nextLine());
-            studentDataSet.add(new StudentData(id));
+            studentDataSet.add(new Student(id));
         }
-    }
-}
-
-class StudentData extends Student{
-    public int id;
-    public StudentData(int id) {
-        super(id);
     }
 }
