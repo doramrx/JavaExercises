@@ -1,13 +1,12 @@
 package TryDatabaseConnection;
 
 import Database.DB;
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
 
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class ManipulateData {
+public class InsertData {
     public static void main(String[] args) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
