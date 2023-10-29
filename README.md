@@ -17,5 +17,5 @@
 * Collections
 * Generics, Set, Map
 * Lambda Functions and Stream
-* JDBC APIs - Statemente, ResultSet
+* JDBC APIs
 
