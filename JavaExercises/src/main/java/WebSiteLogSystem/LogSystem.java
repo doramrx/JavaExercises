@@ -5,15 +5,23 @@ import java.util.Set;
 
 public class LogSystem {
     private Set<LogEntry> users = new HashSet<>();
+    private DataCollector dataCollector;
 
-    void init() {
-       DataCollector dataCollector = new DataCollector();
-       dataCollector.collectData(users);
-
-       System.out.println("Total users: " + countUsers(dataCollector.getFilePath()));
+    public LogSystem() {
+        this.dataCollector = new DataCollector();
     }
 
-    public Integer countUsers(String filePath){
+    void init() {
+       this.users = dataCollector.collectData();
+
+       System.out.println("Total users: " + countUsers());
+    }
+
+    public Integer countUsers(){
         return this.users.size();
+    }
+
+    protected void setDataCollector(DataCollector dataCollector) {
+        this.dataCollector = dataCollector;
     }
 }

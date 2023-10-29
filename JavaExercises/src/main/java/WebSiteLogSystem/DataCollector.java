@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -12,18 +13,15 @@ public class DataCollector {
     Scanner sc = new Scanner(System.in);
     private String filePath;
 
-    public void collectData(Set<LogEntry> logEntries) {
+    public Set<LogEntry> collectData() {
         System.out.print("Enter file full path: ");
         this.filePath = this.sc.nextLine();
-        this.readLogsToSetList(logEntries);
+        return this.readLogsToSetList();
     }
 
-    public String getFilePath(){
-        return this.filePath;
-    }
-
-    private void readLogsToSetList(Set<LogEntry> logEntries) {
+    protected Set<LogEntry> readLogsToSetList() {
         DateTimeFormatter formatter = DateTimeFormatter.ISO_ZONED_DATE_TIME;
+        Set<LogEntry> logEntries = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line = br.readLine();
             while (line != null) {
@@ -41,6 +39,8 @@ public class DataCollector {
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
+
+        return logEntries;
     }
 }
 
