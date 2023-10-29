@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class RecoverData {
+public class ConsultData {
     public static void main(String[] args) {
         Connection connection = null;
         Statement statement = null;
